@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
 const Usuario = require('../models/Usuario');
 const { generateJWT } = require('../helpers/jwt');
+
 const crearUsuario = async (req, res = response) => {
   const { email, password } = req.body;
 
@@ -83,6 +84,8 @@ const loginUsuario = async (req, res = response) => {
     console.log(error);
     res.status(500).json({
       ok: false,
+      uid,
+      name,
       msg: 'Por favor hable con el administrador.',
     });
   }
